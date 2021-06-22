@@ -1,0 +1,25 @@
+{
+  "name": "weather-app-node-api",
+  "version": "1.0.0",
+  "description": "This node console app  displays the weather given a city selected by the user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raccaricardo/Weather-app-node-api.git"
+  },
+  "author": "Ricardo Racca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raccaricardo/Weather-app-node-api/issues"
+  },
+  "homepage": "https://github.com/raccaricardo/Weather-app-node-api#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "colors": "^1.4.0",
+    "inquirer": "^8.1.1"
+  }
+}
