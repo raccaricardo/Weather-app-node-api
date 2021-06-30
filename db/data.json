@@ -1,0 +1,312 @@
+{
+  "type": "FeatureCollection",
+  "query": [
+    "villa",
+    "maria"
+  ],
+  "features": [
+    {
+      "id": "place.9015063688118640",
+      "type": "Feature",
+      "place_type": [
+        "place"
+      ],
+      "relevance": 1,
+      "properties": {},
+      "text_es": "Villa Maria",
+      "place_name_es": "Villa Maria, Provincia de Córdoba, Argentina",
+      "text": "Villa Maria",
+      "place_name": "Villa Maria, Provincia de Córdoba, Argentina",
+      "bbox": [
+        -63.29392940402,
+        -32.45992980216,
+        -63.1767449747,
+        -32.37715283473
+      ],
+      "center": [
+        -63.2402,
+        -32.4075
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -63.2402,
+          -32.4075
+        ]
+      },
+      "context": [
+        {
+          "id": "region.8385999877823510",
+          "wikidata": "Q44759",
+          "short_code": "AR-X",
+          "text_es": "Provincia de Córdoba",
+          "language_es": "es",
+          "text": "Provincia de Córdoba",
+          "language": "es"
+        },
+        {
+          "id": "country.9654124497801190",
+          "wikidata": "Q414",
+          "short_code": "ar",
+          "text_es": "Argentina",
+          "language_es": "es",
+          "text": "Argentina",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "locality.11211013945099910",
+      "type": "Feature",
+      "place_type": [
+        "locality"
+      ],
+      "relevance": 1,
+      "properties": {
+        "wikidata": "Q2038962"
+      },
+      "text_es": "Villa María del Triunfo",
+      "language_es": "es",
+      "place_name_es": "Villa María del Triunfo, Lima, Provincia de Lima, Perú",
+      "text": "Villa María del Triunfo",
+      "language": "es",
+      "place_name": "Villa María del Triunfo, Lima, Provincia de Lima, Perú",
+      "bbox": [
+        -76.9589316,
+        -12.2324512,
+        -76.8822793,
+        -12.1189434
+      ],
+      "center": [
+        -76.919,
+        -12.1704
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.919,
+          -12.1704
+        ]
+      },
+      "context": [
+        {
+          "id": "place.10859529414034610",
+          "wikidata": "Q2868",
+          "text_es": "Lima",
+          "language_es": "es",
+          "text": "Lima",
+          "language": "es"
+        },
+        {
+          "id": "region.9621727954423070",
+          "wikidata": "Q579240",
+          "short_code": "PE-LMA",
+          "text_es": "Provincia de Lima",
+          "language_es": "es",
+          "text": "Provincia de Lima",
+          "language": "es"
+        },
+        {
+          "id": "country.11374003121964510",
+          "wikidata": "Q419",
+          "short_code": "pe",
+          "text_es": "Perú",
+          "language_es": "es",
+          "text": "Perú",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "poi.1271310354684",
+      "type": "Feature",
+      "place_type": [
+        "poi"
+      ],
+      "relevance": 1,
+      "properties": {
+        "foursquare": "4b7c5f66f964a520718f2fe3",
+        "landmark": true,
+        "address": "Homero 704",
+        "category": "mexican restaurant, mexican food, restaurant"
+      },
+      "text_es": "Villa María",
+      "place_name_es": "Villa María, Homero 704, Ciudad de México, 11550, México",
+      "text": "Villa María",
+      "place_name": "Villa María, Homero 704, Ciudad de México, 11550, México",
+      "center": [
+        -99.192375,
+        19.435656
+      ],
+      "geometry": {
+        "coordinates": [
+          -99.192375,
+          19.435656
+        ],
+        "type": "Point"
+      },
+      "context": [
+        {
+          "id": "postcode.6050064489668630",
+          "text_es": "11550",
+          "text": "11550"
+        },
+        {
+          "id": "locality.12924532911192430",
+          "wikidata": "Q20237100",
+          "text_es": "Miguel Hidalgo",
+          "language_es": "nl",
+          "text": "Miguel Hidalgo",
+          "language": "nl"
+        },
+        {
+          "id": "place.12541599803673840",
+          "wikidata": "Q1489",
+          "short_code": "MX-CMX",
+          "text_es": "Ciudad de México",
+          "language_es": "es",
+          "text": "Ciudad de México",
+          "language": "es"
+        },
+        {
+          "id": "country.9933875229773450",
+          "wikidata": "Q96",
+          "short_code": "mx",
+          "text_es": "México",
+          "language_es": "es",
+          "text": "México",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "poi.94489338734",
+      "type": "Feature",
+      "place_type": [
+        "poi"
+      ],
+      "relevance": 1,
+      "properties": {
+        "foursquare": "4b78a9ccf964a520ccdc2ee3",
+        "landmark": true,
+        "address": "Fiesta Americana",
+        "category": "mexican restaurant, mexican food, restaurant"
+      },
+      "text_es": "Villa María",
+      "place_name_es": "Villa María, Fiesta Americana, Ciudad de México, 01376, México",
+      "text": "Villa María",
+      "place_name": "Villa María, Fiesta Americana, Ciudad de México, 01376, México",
+      "center": [
+        -99.262285,
+        19.364903
+      ],
+      "geometry": {
+        "coordinates": [
+          -99.262285,
+          19.364903
+        ],
+        "type": "Point"
+      },
+      "context": [
+        {
+          "id": "postcode.13452349281500320",
+          "text_es": "01376",
+          "text": "01376"
+        },
+        {
+          "id": "locality.13376876822119530",
+          "wikidata": "Q20251521",
+          "text_es": "Álvaro Obregón",
+          "text": "Álvaro Obregón"
+        },
+        {
+          "id": "place.12541599803673840",
+          "wikidata": "Q1489",
+          "short_code": "MX-CMX",
+          "text_es": "Ciudad de México",
+          "language_es": "es",
+          "text": "Ciudad de México",
+          "language": "es"
+        },
+        {
+          "id": "country.9933875229773450",
+          "wikidata": "Q96",
+          "short_code": "mx",
+          "text_es": "México",
+          "language_es": "es",
+          "text": "México",
+          "language": "es"
+        }
+      ]
+    },
+    {
+      "id": "poi.120259180961",
+      "type": "Feature",
+      "place_type": [
+        "poi"
+      ],
+      "relevance": 1,
+      "properties": {
+        "foursquare": "4e8062b4775bcef4ac4865d8",
+        "landmark": true,
+        "address": "Av. San Juan",
+        "category": "college, university",
+        "maki": "college"
+      },
+      "text_es": "Villa María College",
+      "place_name_es": "Villa María College, Av. San Juan, Machalí, Región de O'Higgins 2910000, Chile",
+      "text": "Villa María College",
+      "place_name": "Villa María College, Av. San Juan, Machalí, Región de O'Higgins 2910000, Chile",
+      "center": [
+        -70.695541,
+        -34.176731
+      ],
+      "geometry": {
+        "coordinates": [
+          -70.695541,
+          -34.176731
+        ],
+        "type": "Point"
+      },
+      "context": [
+        {
+          "id": "postcode.3258811647515980",
+          "text_es": "2910000",
+          "text": "2910000"
+        },
+        {
+          "id": "locality.19486929998859280",
+          "text_es": "San Joaquín",
+          "text": "San Joaquín"
+        },
+        {
+          "id": "place.3258811646053800",
+          "wikidata": "Q16915",
+          "text_es": "Machalí",
+          "language_es": "es",
+          "text": "Machalí",
+          "language": "es"
+        },
+        {
+          "id": "region.12761895796696060",
+          "wikidata": "Q2133",
+          "short_code": "CL-LI",
+          "text_es": "Región de O'Higgins",
+          "language_es": "es",
+          "text": "Región de O'Higgins",
+          "language": "es"
+        },
+        {
+          "id": "country.10394314763731110",
+          "wikidata": "Q298",
+          "short_code": "cl",
+          "text_es": "Chile",
+          "language_es": "es",
+          "text": "Chile",
+          "language": "es"
+        }
+      ]
+    }
+  ],
+  "attribution": "NOTICE: © 2021 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+}

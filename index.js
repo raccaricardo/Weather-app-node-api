@@ -1,8 +1,14 @@
 require("colors");
+// const path = require("path");
+// require('dotenv').config( { path: path.resolve(__dirname, '../.env') } );
+// require('dotenv').config({ path: require('find-config')('.env') });
+
+
+
 const { readInput, inquirerMenu, pause } = require("./helpers/inquirer");
-
 const Searches = require("./models/searches");
-
+console.log(process.env);
+// console.log(process.env.MAPBOX_KEY);
 const main = async () => {
 
   let opt = "";
@@ -11,11 +17,11 @@ const main = async () => {
     '1': async () => { //search city
       console.clear();
       const place = await readInput( `Ciudad: ` );
-      console.log('lugar: ', place);
+      console.log({place});
       // searches.addCity = place ;
     },
     '2':  () =>{
-        console.log(searches.arrayList);
+        console.log(searches.searchHistory);
     },
 
     //mostrar mensaje
@@ -26,7 +32,7 @@ const main = async () => {
     //mostrar lugares
     // console.log('informacion de la ciudad');
   };
-
+  console.clear();
   do {
       
     opt = await inquirerMenu();
@@ -35,20 +41,18 @@ const main = async () => {
         //search city
         console.clear();
         const place = await readInput( `Ciudad: ` );
-        searches.searchHistory = place ;
-        console.log(`Ciudad: ${place}`);
-          console.log(`Lat: ${lat}`);
-          console.log(`Lng: ${lng}`);
-          console.log(`Temperatura: ${temperature}`);
-          console.log(`Min: ${min}`);
-          console.log(`Max: ${max}`);
+        searches.city( place ) ;
+        // searches.addToHistoryCity = place ;
+          // console.log(`Lat: ${lat}`);
+          // console.log(`Lng: ${lng}`);
+          // console.log(`Temperatura: ${temperature}`);
+          // console.log(`Min: ${min}`);
+          // console.log(`Max: ${max}`);
       }
       break;
     
     case '2': {  
-          console.log(searches.arrayList);
-          
-
+          console.log(searches.searchHistory);
       }
       break;
     
