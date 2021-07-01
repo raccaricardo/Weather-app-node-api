@@ -30,17 +30,55 @@ const menuQuestions = [
 ];
 //choicesList for inquirer.prompt(). In this case, choices of tasks to mark incomplete, complete
 
-const choicesTasksTo = (choices, message) => {
+const choicesTo = (choices = [], message = '') => {
   return [
     {
       type: "list",
-      name: "idTask",
+      name: "choice",
       message,
       choices,
     },
   ];
 };
+const transformInquirerChoices = (choices = []) => {
+   
+  let arr = [];
+  for(let i = 0; i<=4; i ++){
+    // console.log(features[i].place_name_es);
+    arr.push({
+      value: i,
+      name: ` ${ i.toString().green} ${ choices[i] } `    
+    })  
+  } 
+  // choices.forEach((element, index) => {
+  //   console.clear();
+  //   console.log({index});
+  //   arr.push({
+  //     value: index,
+  //     name: ` ${index.toString().green, ' ', element} `    
+  //   })
+  // });
+  return [
+    {
+      type: "list",
+      name: "option",
+      message: "¿Qué desea hacer?",
+      choices: arr,
+    },
+  ];
+   
+}
 
+const getChoice = async (cities = []) => {
+  const message = "Seleccione una opción";
+  const choices = await transformInquirerChoices(cities);
+  // console.log(choices[0].choices)
+  const { choice } = await inquirer.prompt(
+    choicesTo(choices, message)
+  );
+  console.log({choice})
+  return choice;
+};
 /*
  *
  *         HEADER MENU
@@ -99,13 +137,6 @@ const readInput = async (message) => {
   return desc;
 };
 
-const getTaskToComplete = async (taskObjList) => {
-  const message = "Seleccione una tarea para completar";
-  const { idTask } = await inquirer.prompt(
-    choicesTasksTo(taskObjList, message)
-  );
-  return idTask;
-};
 const getTaskToDelete = async (taskObjList) => {
   const message = "Seleccione una tarea para eliminar";
   const { idTask } = await inquirer.prompt(
@@ -125,7 +156,7 @@ module.exports = {
   inquirerMenu,
   pause,
   readInput,
-  getTaskToComplete,
+  getChoice,
   getTaskToDelete,
   getTaskToIncomplete,
 };

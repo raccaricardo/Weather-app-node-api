@@ -2,6 +2,9 @@ const axios = require("axios");
 require('dotenv').config();
 require('colors');
 
+
+const { getChoice } = require("../helpers/inquirer");
+
 class Searches {
 
   _searchHistory = [];
@@ -22,37 +25,44 @@ class Searches {
 
   get paramsMapBox() {
     return {
-      access_token: process.env.MAPBOX_KEY,
-      limit: 5,
-      language: es,
+      'access_token': process.env.MAPBOX_KEY,
+      'limit': 5,
+      'language': 'es',
     };
   }
 
   async city(place = "") {
   //   //http petition
      try {
-      // const instance = axios.create({
-      //   baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?access_token=${token}&limit=${limit}&language=${lang}`,
-      //   params: this.paramsMapBox,
-      // });
-      // const { data } = await instance.get();
-      // // console.log(`Ciudad ${city}`);
-      // console.log(data.features);
-      // https://api.mapbox.com/geocoding/v5/mapbox.places/villa%20maria.json?access_token=pk.eyJ1IjoicmljYXJkb3JhY2NhIiwiYSI6ImNrcTg0MXE0dTBjZHkyd28yYmMyeGRrd3oifQ.8VImGJQms7m5jsWKVV1LgA&language=es&limit=1
-      const token = process.env.MAPBOX_KEY;
-      const limit = 1;
-      const lang = 'es';
-         const { data } = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?access_token=${token}&limit=${limit}&language=${lang}`)
-        console.log('Aqui esta la data.features: '.red);
-        // console.log(data.features);
-        const city = data.features[0].place_name_es;
-        this._searchHistory.push(city);
+      const instance = axios.create({
+        baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json`,
+        params: this.paramsMapBox,
+      });
+      const { data }  = await instance.get();
+      
+      const { features } = data;
+      
+      // console.log('Aqui esta la data.features: '.red, features);
+      let cities = [];
+      
+      for(let i = 0; i<=4; i ++){
+        
+      cities.push(features[i].place_name_es);
+      // console.log(features[i].place_name_es);
+      }
+      // console.log({cities});
+      let city = await getChoice(cities);//      getChoice(cities, message = "seleccione una ciudad");
+      console.log('Ciudad elegida: ', city)
+        
+        // const city = data.features[0].place_name_es;
+        // this._searchHistory.push(city);
         
         // console.log(data.features[0].place_name_es);
       
-      return [];
-    } catch (error) {
-      console.error(error);
+      return cities;
+    } catch (error) {;
+      console.clear()
+      console.error('Hubo un error al conectar \n \n',error);
     }
  
   }
