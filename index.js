@@ -41,8 +41,8 @@ const main = async () => {
         //search city
         console.clear();
         const place = await readInput( `Ciudad: ` );
-        searches.city( place ) ;
-        // searches.addToHistoryCity = place ;
+        const { city } = await searches.city( place ) ;
+        searches.addHistoryCity = city ;
           // console.log(`Lat: ${lat}`);
           // console.log(`Lng: ${lng}`);
           // console.log(`Temperatura: ${temperature}`);

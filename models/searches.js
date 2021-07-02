@@ -41,25 +41,24 @@ class Searches {
       const { data }  = await instance.get();
       
       const { features } = data;
-      
-      // console.log('Aqui esta la data.features: '.red, features);
+      console.log({features});
       let cities = [];
       
       for(let i = 0; i<=4; i ++){
-        
-      cities.push(features[i].place_name_es);
-      // console.log(features[i].place_name_es);
+        cities.push(features[i].place_name_es);
       }
-      // console.log({cities});
-      let city = await getChoice(cities);//      getChoice(cities, message = "seleccione una ciudad");
+      const message = "seleccione una ciudad";
+       let city = await getChoice(message, cities);
       console.log('Ciudad elegida: ', city)
-        
+        //#region 
         // const city = data.features[0].place_name_es;
         // this._searchHistory.push(city);
         
         // console.log(data.features[0].place_name_es);
-      
-      return cities;
+      //#endregion
+      return {
+        city,
+      };
     } catch (error) {;
       console.clear()
       console.error('Hubo un error al conectar \n \n',error);

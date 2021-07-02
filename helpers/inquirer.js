@@ -20,63 +20,36 @@ const menuQuestions = [
         value: "2",
         name: ` ${"2.".green} Historial de busquedas `,
       },
-      
       {
         value: "0",
         name: ` ${`0.`.green} Salir `,
-      }
+      },
     ],
   },
 ];
-//choicesList for inquirer.prompt(). In this case, choices of tasks to mark incomplete, complete
 
-const choicesTo = (choices = [], message = '') => {
-  return [
-    {
-      type: "list",
-      name: "choice",
-      message,
-      choices,
-    },
-  ];
-};
-const transformInquirerChoices = (choices = []) => {
-   
+const transformInquirerChoices = (message = "", choices = []) => {
   let arr = [];
-  for(let i = 0; i<=4; i ++){
+  for (let i = 0; i <= 4; i++) {
     // console.log(features[i].place_name_es);
     arr.push({
       value: i,
-      name: ` ${ i.toString().green} ${ choices[i] } `    
-    })  
-  } 
-  // choices.forEach((element, index) => {
-  //   console.clear();
-  //   console.log({index});
-  //   arr.push({
-  //     value: index,
-  //     name: ` ${index.toString().green, ' ', element} `    
-  //   })
-  // });
+      name: ` ${i.toString().green} ${choices[i]} `,
+    });
+  }
   return [
     {
       type: "list",
       name: "option",
-      message: "¿Qué desea hacer?",
+      message,
       choices: arr,
     },
   ];
-   
-}
+};
 
-const getChoice = async (cities = []) => {
-  const message = "Seleccione una opción";
-  const choices = await transformInquirerChoices(cities);
-  // console.log(choices[0].choices)
-  const { choice } = await inquirer.prompt(
-    choicesTo(choices, message)
-  );
-  console.log({choice})
+const getChoice = async (message ='', cities = []) => {
+  const choices = await transformInquirerChoices(message, cities);
+  const { choice } = await inquirer.prompt(choices);
   return choice;
 };
 /*
