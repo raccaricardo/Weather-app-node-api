@@ -15,8 +15,7 @@ class Searches {
   }
 
   set addHistoryCity(city) {
-    console.log("addHistory, city = ", city);
-    this._searchHistory.push(city);
+     this._searchHistory.push(city);
   }
 
   get searchHistory() {
@@ -49,6 +48,7 @@ class Searches {
       }
       const message = "seleccione una ciudad";
        let city = await getChoice(message, cities);
+       console.clear();
       console.log('Ciudad elegida: ', city)
         //#region 
         // const city = data.features[0].place_name_es;

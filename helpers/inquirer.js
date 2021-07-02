@@ -33,8 +33,8 @@ const transformInquirerChoices = (message = "", choices = []) => {
   for (let i = 0; i <= 4; i++) {
     // console.log(features[i].place_name_es);
     arr.push({
-      value: i,
-      name: ` ${i.toString().green} ${choices[i]} `,
+      value: choices[i],
+      name: ` ${(i+1).toString().green} ${choices[i]} `,
     });
   }
   return [
@@ -47,10 +47,10 @@ const transformInquirerChoices = (message = "", choices = []) => {
   ];
 };
 
-const getChoice = async (message ='', cities = []) => {
+const getChoice = async (message = '', cities = [""]) => {
   const choices = await transformInquirerChoices(message, cities);
-  const { choice } = await inquirer.prompt(choices);
-  return choice;
+  const { option } = await inquirer.prompt(choices);
+  return option;
 };
 /*
  *
