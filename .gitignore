@@ -71,6 +71,7 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+.vscode/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -99,6 +100,7 @@ dist
 
 # DynamoDB Local files
 .dynamodb/
+db/*.json
 
 # TernJS port file
 .tern-port

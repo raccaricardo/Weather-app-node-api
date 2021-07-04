@@ -3,7 +3,7 @@ require("colors"); //no lo asignamos a una contante porque no necesatimos traer 
 
 /**
  * @array menuQuestions
- * defines the type of function(  list,input )
+ * defines the type of function(  list,input,etc )
  *
  */
 const menuQuestions = [
@@ -27,31 +27,6 @@ const menuQuestions = [
     ],
   },
 ];
-
-const transformInquirerChoices = (message = "", choices = []) => {
-  let arr = [];
-  for (let i = 0; i <= 4; i++) {
-    // console.log(features[i].place_name_es);
-    arr.push({
-      value: choices[i],
-      name: ` ${(i+1).toString().green} ${choices[i]} `,
-    });
-  }
-  return [
-    {
-      type: "list",
-      name: "option",
-      message,
-      choices: arr,
-    },
-  ];
-};
-
-const getChoice = async (message = '', cities = [""]) => {
-  const choices = await transformInquirerChoices(message, cities);
-  const { option } = await inquirer.prompt(choices);
-  return option;
-};
 /*
  *
  *         HEADER MENU
@@ -67,6 +42,39 @@ const inquirerMenu = async () => {
 
   return option;
 };
+
+const transformInquirerChoices = (message = '', choicess = []) => {
+  // message = "", choicess = []
+  let choices;
+  let messag;
+  
+    
+    
+    choices = choicess.map((choice, index) => ({
+      value: {
+        id: choice.id,
+        title: choice.title
+      },
+      name: ` ${(index + 1).toString().green} ${choice.title} `
+    }))
+  
+  
+  return [
+    {
+      type: "list",
+      name: "option",
+      message: messag,
+      choices,
+    },
+  ];
+};
+
+const getChoice = async (message = '', options = []) => {
+  const choices = await transformInquirerChoices(message, options);
+  const { option } = await inquirer.prompt(choices);
+  return option;
+};
+
 /**
  *
  * @function pause A function to avoid the end of program

@@ -2,7 +2,7 @@ const axios = require("axios");
 require('dotenv').config();
 require('colors');
 
-
+ 
 const { getChoice } = require("../helpers/inquirer");
 
 class Searches {
@@ -19,7 +19,12 @@ class Searches {
   }
 
   get searchHistory() {
-    return this._searchHistory;
+
+    if ( this._searchHistory===[] ){
+      return false;
+    }else{
+      return this._searchHistory;
+    }
   }
 
   get paramsMapBox() {
@@ -33,6 +38,8 @@ class Searches {
   async city(place = "") {
   //   //http petition
      try {
+      
+      let cities = [];
       const instance = axios.create({
         baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json`,
         params: this.paramsMapBox,
@@ -40,28 +47,20 @@ class Searches {
       const { data }  = await instance.get();
       
       const { features } = data;
-      console.log({features});
-      let cities = [];
+      // console.log({features});
       
-      for(let i = 0; i<=4; i ++){
-        cities.push(features[i].place_name_es);
-      }
-      const message = "seleccione una ciudad";
-       let city = await getChoice(message, cities);
-       console.clear();
-      console.log('Ciudad elegida: ', city)
-        //#region 
-        // const city = data.features[0].place_name_es;
-        // this._searchHistory.push(city);
-        
-        // console.log(data.features[0].place_name_es);
-      //#endregion
-      return {
-        city,
-      };
+      return features.map( place => ({
+
+        id: place.id, 
+        name: place.place_name_es,
+        lng: place.center[0],
+        lat: place.center[1],
+      }))
+      
     } catch (error) {;
-      console.clear()
-      console.error('Hubo un error al conectar \n \n',error);
+      console.clear();
+      console.error('Hubo un error al conectar \n \n \n \n',error);
+      return [];
     }
  
   }
