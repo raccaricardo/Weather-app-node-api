@@ -105,6 +105,6 @@ dist
 .tern-port
 
 #production
-*/data.json
+db/data.json
 
 

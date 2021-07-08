@@ -110,7 +110,7 @@ class Searches {
       };
     } catch (error) {
       console.clear();
-      console.error( "No se pudo conectar con OpenWeather \n \n ", error);
+      console.error( "No se pudo conectar con OpenWeather \n \n ");
       return [];
     }
   }

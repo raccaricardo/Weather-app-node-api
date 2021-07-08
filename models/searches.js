@@ -2,7 +2,7 @@ const axios = require("axios");
 require('dotenv').config();
 require('colors');
 
- 
+const { readData } = require("../helpers/fileHandler"); 
 const { getChoice } = require("../helpers/inquirer");
 
 class Searches {
@@ -11,7 +11,7 @@ class Searches {
 
   constructor(/*city = '' */) {
     //TODO: read db if exist
-    // this._searchHistory = [];
+    this._searchHistory = readData() || [];
   }
 
   set addHistoryCity(city) {
@@ -30,13 +30,21 @@ class Searches {
   get paramsMapBox() {
     return {
       'access_token': process.env.MAPBOX_KEY,
-      'limit': 5,
+      'limit': 10,
       'language': 'es',
     };
   }
-
-  async city(place = "") {
-  //   //http petition
+paramsOpenWeather(lng, lat){
+    return{
+      'appid': process.env.OPENWEATHER_KEY,
+      'lang': 'es',
+      'units': 'metric',
+      'lat':lat,
+      'lon': lng      
+    };
+  }
+   async findCity(place = "") {
+    //http petition
      try {
       
       let cities = [];
@@ -59,10 +67,43 @@ class Searches {
       
     } catch (error) {;
       console.clear();
-      console.error('Hubo un error al conectar \n \n \n \n',error);
+      console.error('Hubo un error al conectar con MapBox \n \n \n \n');
       return [];
     }
  
+  }
+  async findWeather(lat = 0, long = 0){
+    try {
+      
+      const instance = axios.create({
+        baseURL: `https://api.openweathermap.org/data/2.5/weather`,
+        params:{
+          'appid': process.env.OPENWEATHER_KEY,
+          'lang': 'es',
+          'units': 'metric',
+          'lat':lat,
+          'lon': long      
+        }
+      });
+      const { data }  = await instance.get();
+      const { weather, main} = data;
+      const { temp, feels_like: realFeel, temp_min: tempMin, temp_max: tempMax, humidity } = main;
+
+      return{
+        description: weather.description,
+        temp,
+        realFeel,
+        tempMin,
+        tempMax,
+        humidity
+      }
+     
+      
+    } catch (error) {;
+      console.clear();
+      console.error('Hubo un error al conectar con openWeather\n \n \n \n');
+      return [];
+    }  
   }
 }
 
