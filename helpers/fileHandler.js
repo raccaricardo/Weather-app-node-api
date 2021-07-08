@@ -21,20 +21,6 @@ const saveData = (data = []) => {
     }
 }
 
-
-// Object.keys(this._list).forEach((key) => {
-//     const task = this._list[key];
-
-//     if (!task.is_completed) {
-//         taskObjList.push({
-//             value: task.id,
-//             name: `${i.toString().green} ${task.description} `
-//         });
-//         i++;
-//     }
-//     return taskObjList;
-// });
-
 const readData = () => {
 
     if (!fs.existsSync(path)) {

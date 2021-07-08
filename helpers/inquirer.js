@@ -21,6 +21,10 @@ const menuQuestions = [
         name: ` ${"2.".green} Historial de busquedas `,
       },
       {
+        value: "3",
+        name: ` ${"3.".green} Historial de busquedas `,
+      },
+      {
         value: "0",
         name: ` ${`0.`.green} Salir `,
       },
@@ -47,14 +51,27 @@ const transformInquirerChoices = (message = "", choicess = []) => {
   // message = "", choicess = []
   let choices;
   let messag;
-
-  choices = choicess.map((choice, index) => ({
-    value: {
-      id: choice.id,
-      title: choice.title,
-    },
-    name: ` ${(index + 1).toString().green} ${choice.title} `,
-  }));
+  if(choicess === [] ){
+    title = 'No se encontraron resultados';
+    messag = title
+    choices = {
+      value: '0',
+      name: ` ${ ('0').green } ${ title } `,
+    }
+  }else{
+    choices = choicess.map((choice, index) => ({
+      value: {
+        id: choice.id,
+        title: choice.title,
+      },
+      name: ` ${(index + 1).toString().green} ${choice.title} `,
+    }));
+    choices.push({ 
+      value: '0',
+      name: `${'0. Volver atras.'.black.bgRed}`
+    })
+  }
+  
 
   return [
     {

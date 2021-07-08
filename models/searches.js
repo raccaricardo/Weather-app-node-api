@@ -14,7 +14,14 @@ class Searches {
   }
 
   set addHistoryCity(city) {
-    this._searchHistory.push(city);
+    // this._searchHistory.push(city);
+
+    if (this._searchHistory.length >= 5) {
+      this._searchHistory.unshift(city);
+      this._searchHistory.pop();
+    } else {
+      this._searchHistory.unshift(city);
+    }
   }
 
   get searchHistory() {
@@ -24,6 +31,17 @@ class Searches {
       return this._searchHistory;
     }
   }
+  // get searchHistoryCapitalized() {
+  //   if (!this._searchHistory === []) {
+  //     return this._searchHistory.map((place) => {
+  //       let words = place.splip(" ");
+  //       words = words.map((w) => w[0].toUpperCase() + w.substring(1));
+  //       return words.join(" ");
+  //     });
+  //   } else {
+  //     return [];
+  //   }
+  // }
 
   get paramsMapBox() {
     return {
@@ -32,7 +50,7 @@ class Searches {
       language: "es",
     };
   }
-  paramsOpenWeather() {
+  get paramsOpenWeather() {
     return {
       appid: process.env.OPENWEATHER_KEY,
       lang: "es",
@@ -61,7 +79,10 @@ class Searches {
       }));
     } catch (error) {
       console.clear();
-      console.error("Hubo un error al conectar con MapBox \n \n \n \n");
+      console.error(
+        error,
+        "\n \n \n \n Hubo un error al conectar con MapBox \n \n \n \n"
+      );
       return [];
     }
   }
@@ -69,8 +90,9 @@ class Searches {
     try {
       const instance = axios.create({
         baseURL: `https://api.openweathermap.org/data/2.5/weather`,
-        params: {...this.paramsOpenWeather, lat, lon}
+        params: { ...this.paramsOpenWeather, lat, lon },
       });
+
       const { data } = await instance.get();
       const { weather, main } = data;
       const {
@@ -80,6 +102,7 @@ class Searches {
         temp_max: tempMax,
         humidity,
       } = main;
+
       return {
         description: weather[0].description,
         temp,
@@ -91,10 +114,11 @@ class Searches {
     } catch (error) {
       console.clear();
       console.error("Hubo un error al conectar con openWeather\n \n \n \n");
-      return [];
+      return {};
     }
     //#endregion
   }
+  //#endregion
 }
 
 module.exports = Searches;

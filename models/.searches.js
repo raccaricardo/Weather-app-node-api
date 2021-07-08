@@ -15,7 +15,10 @@ class Searches {
   }
 
   set addHistoryCity(city) {
-     this._searchHistory.push(city);
+    if(this._searchHistory.length === 10){
+      this._searchHistory.pop();
+    }
+    this._searchHistory.unshift(city);
   }
 
   get searchHistory() {

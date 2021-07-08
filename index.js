@@ -11,26 +11,17 @@ const Searches = require("./models/searches");
 
 const main = async () => {
   let opt = "";
-  let searches = new Searches();
+  const searches = new Searches();
   const routes = {
     1: async () => {
       //search city
       console.clear();
       const place = await readInput(`Ciudad: `);
       console.log({ place });
-      // searches.addCity = place ;
     },
     2: () => {
       console.log(searches.searchHistory);
     },
-
-    //mostrar mensaje
-
-    //buscar los lugares
-    //seleccionar el lugares
-    //clima
-    //mostrar lugares
-    // console.log('informacion de la ciudad');
   };
   console.clear();
 
@@ -49,6 +40,7 @@ const main = async () => {
 
           const message = "seleccione una ciudad";
           let city = await getChoice(message, cities);
+          if (city == "0") continue;
 
           //#region add to history search and save in .json file
           searches.addHistoryCity = city;
@@ -58,12 +50,13 @@ const main = async () => {
           //#region filtering data and printing
           city = similarPlaces.find((place) => place.id === city.id);
           const { name, lng, lat } = city;
-          
+
           const { description, temp, realFeel, tempMin, tempMax, humidity } =
             await searches.findWeather(lat, lng);
+            
           console.clear();
           console.log(`Ciudad: ${name}`);
-          console.log(`Como esta el clima: ${description}`)
+          console.log(`Como esta el clima: ${description}`);
           console.log(`Lat: ${lat}`);
           console.log(`Lng: ${lng}`);
           console.log(`Temperatura: ${temp}º`);
@@ -77,7 +70,7 @@ const main = async () => {
 
       case "2":
         {
-          const record = searches.searchHistory; 
+          const record = searches.searchHistory;
           const message = "Historial de busquedas";
           if (!record) {
             await getChoice();
@@ -88,7 +81,8 @@ const main = async () => {
         break;
       case "3":
         {
-          // console.log(searches.searchHistory);
+          // console.log(searches.searchHistoryCapitalized);
+          // await(getChoice('seleccione una opcion', searches.searchHistoryCapitalized));
         }
         break;
       default:
