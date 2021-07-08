@@ -100,7 +100,11 @@ dist
 
 # DynamoDB Local files
 .dynamodb/
-db/*.json
 
 # TernJS port file
 .tern-port
+
+#production
+*/data.json
+
+
