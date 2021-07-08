@@ -32,13 +32,11 @@ class Searches {
       language: "es",
     };
   }
-  paramsOpenWeather(lng, lat) {
+  paramsOpenWeather() {
     return {
       appid: process.env.OPENWEATHER_KEY,
       lang: "es",
       units: "metric",
-      lat: lat,
-      lon: lng,
     };
   }
   //#region api connections
@@ -67,21 +65,15 @@ class Searches {
       return [];
     }
   }
-  async findWeather(lat = 0, long = 0) {
+  async findWeather(lat = 0, lon = 0) {
     try {
       const instance = axios.create({
         baseURL: `https://api.openweathermap.org/data/2.5/weather`,
-        params: {
-          appid: process.env.OPENWEATHER_KEY,
-          lang: "es",
-          units: "metric",
-          lat: lat,
-          lon: long,
-        },
+        params: {...this.paramsOpenWeather, lat, lon}
       });
       const { data } = await instance.get();
       const { weather, main } = data;
-       const {
+      const {
         temp,
         feels_like: realFeel,
         temp_min: tempMin,
