@@ -43,22 +43,19 @@ const inquirerMenu = async () => {
   return option;
 };
 
-const transformInquirerChoices = (message = '', choicess = []) => {
+const transformInquirerChoices = (message = "", choicess = []) => {
   // message = "", choicess = []
   let choices;
   let messag;
-  
-    
-    
-    choices = choicess.map((choice, index) => ({
-      value: {
-        id: choice.id,
-        title: choice.title
-      },
-      name: ` ${(index + 1).toString().green} ${choice.title} `
-    }))
-  
-  
+
+  choices = choicess.map((choice, index) => ({
+    value: {
+      id: choice.id,
+      title: choice.title,
+    },
+    name: ` ${(index + 1).toString().green} ${choice.title} `,
+  }));
+
   return [
     {
       type: "list",
@@ -69,7 +66,7 @@ const transformInquirerChoices = (message = '', choicess = []) => {
   ];
 };
 
-const getChoice = async (message = '', options = []) => {
+const getChoice = async (message = "", options = []) => {
   const choices = await transformInquirerChoices(message, options);
   const { option } = await inquirer.prompt(choices);
   return option;
@@ -118,26 +115,9 @@ const readInput = async (message) => {
   return desc;
 };
 
-const getTaskToDelete = async (taskObjList) => {
-  const message = "Seleccione una tarea para eliminar";
-  const { idTask } = await inquirer.prompt(
-    choicesTasksTo(taskObjList, message)
-  );
-  return idTask;
-};
-const getTaskToIncomplete = async (taskObjList) => {
-  const message = "Seleccione una tarea para marcar como incompleta";
-  const { idTask } = await inquirer.prompt(
-    choicesTasksTo(taskObjList, message)
-  );
-  return idTask;
-};
-
 module.exports = {
   inquirerMenu,
   pause,
   readInput,
   getChoice,
-  getTaskToDelete,
-  getTaskToIncomplete,
 };

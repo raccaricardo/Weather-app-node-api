@@ -1,12 +1,11 @@
 const axios = require("axios");
-require('dotenv').config();
-require('colors');
+require("dotenv").config();
+require("colors");
 
-const { readData } = require("../helpers/fileHandler"); 
+const { readData } = require("../helpers/fileHandler");
 const { getChoice } = require("../helpers/inquirer");
 
 class Searches {
-
   _searchHistory = [];
 
   constructor(/*city = '' */) {
@@ -15,95 +14,94 @@ class Searches {
   }
 
   set addHistoryCity(city) {
-     this._searchHistory.push(city);
+    this._searchHistory.push(city);
   }
 
   get searchHistory() {
-
-    if ( this._searchHistory===[] ){
+    if (this._searchHistory === []) {
       return false;
-    }else{
+    } else {
       return this._searchHistory;
     }
   }
 
   get paramsMapBox() {
     return {
-      'access_token': process.env.MAPBOX_KEY,
-      'limit': 10,
-      'language': 'es',
+      access_token: process.env.MAPBOX_KEY,
+      limit: 10,
+      language: "es",
     };
   }
-paramsOpenWeather(lng, lat){
-    return{
-      'appid': process.env.OPENWEATHER_KEY,
-      'lang': 'es',
-      'units': 'metric',
-      'lat':lat,
-      'lon': lng      
+  paramsOpenWeather(lng, lat) {
+    return {
+      appid: process.env.OPENWEATHER_KEY,
+      lang: "es",
+      units: "metric",
+      lat: lat,
+      lon: lng,
     };
   }
-   async findCity(place = "") {
+  //#region api connections
+  async findCity(place = "") {
     //http petition
-     try {
-      
+    try {
       let cities = [];
       const instance = axios.create({
         baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json`,
         params: this.paramsMapBox,
       });
-      const { data }  = await instance.get();
-      
+      const { data } = await instance.get();
+
       const { features } = data;
       // console.log({features});
-      
-      return features.map( place => ({
 
-        id: place.id, 
+      return features.map((place) => ({
+        id: place.id,
         name: place.place_name_es,
         lng: place.center[0],
         lat: place.center[1],
-      }))
-      
-    } catch (error) {;
+      }));
+    } catch (error) {
       console.clear();
-      console.error('Hubo un error al conectar con MapBox \n \n \n \n');
+      console.error("Hubo un error al conectar con MapBox \n \n \n \n");
       return [];
     }
- 
   }
-  async findWeather(lat = 0, long = 0){
+  async findWeather(lat = 0, long = 0) {
     try {
-      
       const instance = axios.create({
         baseURL: `https://api.openweathermap.org/data/2.5/weather`,
-        params:{
-          'appid': process.env.OPENWEATHER_KEY,
-          'lang': 'es',
-          'units': 'metric',
-          'lat':lat,
-          'lon': long      
-        }
+        params: {
+          appid: process.env.OPENWEATHER_KEY,
+          lang: "es",
+          units: "metric",
+          lat: lat,
+          lon: long,
+        },
       });
-      const { data }  = await instance.get();
-      const { weather, main} = data;
-      const { temp, feels_like: realFeel, temp_min: tempMin, temp_max: tempMax, humidity } = main;
-
-      return{
-        description: weather.description,
+      const { data } = await instance.get();
+      const { weather, main } = data;
+       const {
+        temp,
+        feels_like: realFeel,
+        temp_min: tempMin,
+        temp_max: tempMax,
+        humidity,
+      } = main;
+      return {
+        description: weather[0].description,
         temp,
         realFeel,
         tempMin,
         tempMax,
-        humidity
-      }
-     
-      
-    } catch (error) {;
+        humidity,
+      };
+    } catch (error) {
       console.clear();
-      console.error('Hubo un error al conectar con openWeather\n \n \n \n');
+      console.error("Hubo un error al conectar con openWeather\n \n \n \n");
       return [];
-    }  
+    }
+    //#endregion
   }
 }
 

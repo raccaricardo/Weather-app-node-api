@@ -63,6 +63,7 @@ const main = async () => {
             await searches.findWeather(lat, lng);
           console.clear();
           console.log(`Ciudad: ${name}`);
+          console.log(`Como esta el clima: ${description}`)
           console.log(`Lat: ${lat}`);
           console.log(`Lng: ${lng}`);
           console.log(`Temperatura: ${temp}º`);
@@ -76,9 +77,7 @@ const main = async () => {
 
       case "2":
         {
-          //ACA ESTOY TRABAJANDO
-
-          record = readData() || searches.searchHistory;
+          const record = searches.searchHistory; 
           const message = "Historial de busquedas";
           if (!record) {
             await getChoice();
@@ -89,7 +88,7 @@ const main = async () => {
         break;
       case "3":
         {
-          console.log(searches.searchHistory);
+          // console.log(searches.searchHistory);
         }
         break;
       default:
